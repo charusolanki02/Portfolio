@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charu Bhati — Portfolio</title>
+<meta name="description" content="Portfolio of Charu Bhati, B.Tech Data Science student at NIET, Greater Noida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0A0A; --bg-2: #141414; --panel: #161616; --line: #2B2B2B;
+    --text: #F2F2F0; --muted: #9C9C9C; --accent: #D4AF37; --accent-2: #34D399; --term-bg: #000000;
+  }
+  body.dark{
+    --bg: #F7F7F5; --bg-2: #EFEFEC; --panel: #FFFFFF; --line: #E2E2DE;
+    --text: #141414; --muted: #6B6B68; --accent: #B8860B; --accent-2: #0F766E; --term-bg: #0B0B0B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;line-height:1.6;transition:background .3s ease, color .3s ease;}
+  ::selection{background:var(--accent);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .brand{font-weight:800;font-size:19px;letter-spacing:-0.02em;}
+  .brand span{color:var(--accent);font-weight:500;}
+  .navlinks{display:flex;align-items:center;gap:30px;font-size:14.5px;color:var(--muted);font-weight:600;}
+  .navlinks a:hover{color:var(--text);}
+  .navlinks a{transition:color .2s;}
+  .nav-right{display:flex;align-items:center;gap:14px;}
+  .theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--panel);color:var(--accent);font-size:16px;}
+  .btn{padding:12px 22px;border-radius:100px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap;}
+  .btn-primary{background:var(--text);color:var(--bg);}
+  .btn-primary:hover{opacity:.88;transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);background:var(--panel);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  header.hero{background:linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);padding:88px 0 80px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;position:relative;z-index:1;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;font-weight:600;}
+  h1.name{font-size:52px;line-height:1.08;letter-spacing:-0.02em;font-weight:800;margin-bottom:6px;}
+  h1.name .accent{color:var(--accent);}
+  .role-line{font-family:'JetBrains Mono',monospace;font-size:19px;color:var(--accent-2);margin:14px 0 20px;}
+  .role-line::before{content:"> ";color:var(--muted);}
+  .hero p.lede{color:var(--muted);font-size:16.5px;max-width:480px;margin-bottom:30px;}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px;}
+  .social-row{display:flex;gap:12px;}
+  .social-icon{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--panel);font-size:15px;font-weight:700;transition:all .2s;}
+  .social-icon:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .pill{position:absolute;background:var(--panel);border:1px solid var(--line);padding:7px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);box-shadow:0 6px 18px rgba(20,20,40,0.06);}
+  .term-card{background:var(--term-bg);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(15,15,35,0.18);position:relative;}
+  .term-head{display:flex;align-items:center;gap:8px;padding:14px 18px;background:#161B22;border-bottom:1px solid #262C36;}
+  .term-dot{width:11px;height:11px;border-radius:50%;}
+  .term-dot.r{background:#FF5F56;} .term-dot.y{background:#FFBD2E;} .term-dot.g{background:#27C93F;}
+  .term-file{margin-left:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#8B949E;}
+  .term-body{padding:26px 22px;font-family:'JetBrains Mono',monospace;font-size:14.5px;color:#C9D1D9;}
+  .term-body .prompt{color:var(--accent-2);}
+  .term-body .fn{color:#79C0FF;}
+  .term-body .str{color:#A5D6FF;}
+  .term-body .res{color:#F0F6FC;padding-left:22px;display:block;margin:4px 0;}
+  .term-body .comment{color:#6E7681;}
+  .float-card{position:absolute;bottom:-18px;right:-14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;box-shadow:0 12px 30px rgba(15,15,35,0.12);}
+  .float-card b{color:var(--accent-2);display:block;font-size:15px;margin-top:2px;}
+  .section{padding:76px 0;border-top:1px solid var(--line);}
+  .eyebrow-sm{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px;}
+  .section-title{font-size:34px;font-weight:800;letter-spacing:-0.02em;margin-bottom:40px;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .about-body p{color:var(--muted);font-size:16px;margin-bottom:20px;max-width:520px;}
+  .about-body ul{list-style:none;}
+  .about-body li{position:relative;padding-left:22px;color:var(--text);font-size:15px;margin-bottom:12px;}
+  .about-body li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .stat-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;text-align:center;}
+  .stat-num{font-size:32px;font-weight:800;color:var(--text);}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:6px;}
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .skill-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .2s, transform .2s;}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .skill-card h5{font-size:16px;font-weight:700;margin-bottom:14px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);background:var(--bg-2);border:1px solid var(--line);padding:5px 12px;border-radius:100px;}
+  .placeholder-card{background:var(--panel);border:1.5px dashed var(--line);border-radius:14px;padding:40px;text-align:center;color:var(--muted);}
+  .placeholder-card .icon{font-size:26px;margin-bottom:12px;}
+  .placeholder-card h5{color:var(--text);font-size:17px;margin-bottom:8px;}
+  .placeholder-card p{font-size:14.5px;max-width:420px;margin:0 auto;}
+  .timeline{position:relative;padding-left:28px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line);}
+  .timeline-item{position:relative;margin-bottom:20px;}
+  .timeline-dot{position:absolute;left:-28px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);}
+  .timeline-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 28px;}
+  .timeline-status{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .timeline-card h4{font-size:19px;font-weight:700;margin-bottom:6px;}
+  .timeline-card .org{color:var(--muted);font-size:14.5px;margin-bottom:4px;}
+  .timeline-card .loc{color:var(--muted);font-size:13.5px;}
+  .timeline-card .score{display:inline-block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent-2);background:var(--bg-2);padding:5px 12px;border-radius:100px;font-weight:600;}
+  .exp-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:48px;text-align:center;max-width:680px;margin:0 auto;}
+  .exp-icon{width:52px;height:52px;border-radius:14px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 20px;}
+  .exp-card p{font-size:19px;font-weight:600;color:var(--text);line-height:1.5;}
+  .resume-bar{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 10px 30px rgba(15,15,35,0.05);}
+  .resume-bar-left{display:flex;align-items:center;gap:16px;}
+  .resume-icon{width:52px;height:52px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;}
+  .resume-bar h5{font-size:17px;font-weight:700;}
+  .resume-bar p{font-size:13.5px;color:var(--muted);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;}
+  .info-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;font-size:14.5px;font-weight:600;margin-bottom:14px;}
+  .info-card .ic{color:var(--accent);font-size:16px;font-weight:800;}
+  .form-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:13.5px;font-weight:700;margin-bottom:8px;}
+  .form-group input, .form-group textarea{width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:'Manrope',sans-serif;font-size:14.5px;color:var(--text);}
+  .form-group textarea{resize:vertical;min-height:100px;}
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:10px;}
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;}
+  @media (max-width:860px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    h1.name{font-size:38px;}
+    .navlinks{display:none;}
+    .wrap{padding:0 20px;}
+    .float-card{position:static;margin-top:14px;display:inline-block;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">CB<span>.dev</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="theme-toggle" id="themeToggle" title="Toggle theme">◐</div>
+      <a class="btn btn-primary" href="#contact">Let's talk</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">PORTFOLIO — B.TECH DATA SCIENCE</div>
+      <h1 class="name">Hi, I'm <span class="accent">Charu Bhati</span></h1>
+      <div class="role-line">Data Science Student</div>
+      <p class="lede">I'm a second-year B.Tech Data Science student in Greater Noida, building my foundation in Python, data analysis, and structured thinking — and looking for a place to put it to work.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="resume.pdf" download>⬇ Download Resume</a>
+        <a class="btn btn-ghost" href="#contact">Contact Me ↓</a>
+      </div>
+      <div class="social-row">
+        <a class="social-icon" href="https://github.com/charusolanki02" target="_blank" rel="noopener" title="GitHub">GH</a>
+        <a class="social-icon" href="https://www.linkedin.com/in/charu-bhati-2012423a9" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a class="social-icon" href="mailto:charusolanki02@gmail.com" title="Email">✉</a>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="pill" style="top:-14px;left:10px;">2nd Year</div>
+      <div class="pill" style="top:-14px;right:0;">Python</div>
+      <div class="term-card">
+        <div class="term-head">
+          <div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div>
+          <div class="term-file">status.py</div>
+        </div>
+        <div class="term-body">
+          <span class="prompt">&gt;&gt;&gt;</span> <span class="fn">skills</span>()<br>
+          <span class="res">['Python', 'DSA', 'Excel', 'Pandas']</span>
+          <span class="prompt">&gt;&gt;&gt;</span> <span class="fn">status</span>(<span class="str">"applications"</span>)<br>
+          <span class="res">open to internships</span>
+          <span class="comment">&gt;&gt;&gt; _</span>
+        </div>
+      </div>
+      <div class="float-card">Currently in<b>2nd Year, B.Tech</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="eyebrow-sm">ABOUT</div>
+    <h2 class="section-title">Learning by showing up, one semester at a time.</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;">
+          <img src="profile.jpg" alt="Charu Bhati" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--line);">
+          <div><strong style="font-size:16px;">Charu Bhati</strong><div style="color:var(--muted);font-size:13.5px;">B.Tech Data Science · NIET</div></div>
+        </div>
+        <p>I'm a second-year B.Tech student specializing in Data Science at NIET, Greater Noida. I want to contribute wherever I land and keep developing new skills along the way — right now that means building strong fundamentals in Python, data handling, and spreadsheet analysis.</p>
+        <ul>
+          <li>Currently pursuing B.Tech in Data Science (2nd Year)</li>
+          <li>Learning Python and Data Structures &amp; Algorithms (DSA)</li>
+          <li>Studying at Noida Institute of Engineering and Technology</li>
+          <li>Comfortable with advanced Microsoft Excel</li>
+          <li>Actively looking for internship opportunities</li>
+        </ul>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num">2nd</div><div class="stat-label">Year, B.Tech</div></div>
+        <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Projects Built</div></div>
+        <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Core Skills</div></div>
+        <div class="stat-card"><div class="stat-num">Fresher</div><div class="stat-label">Work Status</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="eyebrow-sm">SKILLS</div>
+    <h2 class="section-title">The toolkit so far.</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><h5>Programming</h5><div class="tag-row"><span class="tag">Python</span><span class="tag">DSA</span></div></div>
+      <div class="skill-card"><h5>Data Science Libraries</h5><div class="tag-row"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Scikit-learn</span></div></div>
+      <div class="skill-card"><h5>Web Basics</h5><div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></div>
+      <div class="skill-card"><h5>Spreadsheets</h5><div class="tag-row"><span class="tag">Advanced MS Excel</span></div></div>
+      <div class="skill-card"><h5>Tools</h5><div class="tag-row"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Replit</span></div></div>
+      <div class="skill-card"><h5>Languages</h5><div class="tag-row"><span class="tag">Hindi</span><span class="tag">English</span><span class="tag">German (basic)</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="eyebrow-sm">PROJECTS</div>
+    <h2 class="section-title">Things I've built to learn by doing.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h5>Car Price Prediction</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Random Forest Regressor predicting car selling price from age, fuel type, transmission, and kilometers driven. Built during the CodeAlpha internship.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span></div>
+        <a href="https://github.com/charusolanki02/CodeAlpha_Car-price-prediction" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+      <div class="skill-card">
+        <h5>Unemployment Analysis — India</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Analyzed unemployment trends and the Covid-19 impact on employment using Indian unemployment data. Built during the CodeAlpha internship.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
+        <a href="https://github.com/charusolanki02/CodeAlpha_Unemployment-of-India" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+      <div class="skill-card">
+        <h5>NIET Lost &amp; Found</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">A campus web app to report and track misplaced items, with a real-time dashboard and a responsive reporting form.</p>
+        <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Replit</span></div>
+        <a href="https://github.com/charusolanki02/Niet-lost-and-found" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+      <div class="skill-card">
+        <h5>Iris Flower Classification</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Classic ML classification task identifying iris species from petal and sepal measurements. Part of the CodSoft internship task set.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Scikit-learn</span></div>
+        <a href="https://github.com/charusolanki02/CODSOFT/tree/main/Iris%20flower" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+      <div class="skill-card">
+        <h5>Sales Prediction</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Regression model estimating product sales from advertising spend. Part of the CodSoft internship task set.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span></div>
+        <a href="https://github.com/charusolanki02/CODSOFT/tree/main/Sales%20prediction" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+      <div class="skill-card">
+        <h5>Titanic Survival Prediction</h5>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Predicts passenger survival on the Titanic dataset using classification techniques. Part of the CodSoft internship task set.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span></div>
+        <a href="https://github.com/charusolanki02/CODSOFT/tree/main/Titanic%20Survival" target="_blank" rel="noopener" style="display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--accent);">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="eyebrow-sm">EDUCATION</div>
+    <h2 class="section-title">Academic background.</h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-status">🎓 2nd Year — in progress</div>
+          <h4>Bachelor of Technology — Data Science</h4>
+          <div class="org">Noida Institute of Engineering and Technology</div>
+          <div class="loc">📍 Greater Noida</div>
+        </div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-status">🎓 Completed · 2025</div>
+          <h4>12th — CBSE</h4>
+          <div class="org">S.D.R.V Convent School</div>
+          <div class="loc">📍 Mirzapur, Niloni, Greater Noida</div>
+        </div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-status">🎓 Completed · 2023</div>
+          <h4>10th — CBSE</h4>
+          <div class="org">S.D.R.V Convent School</div>
+          <div class="loc">📍 Mirzapur, Niloni, Greater Noida</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="exp-card">
+      <div class="exp-icon">🚀</div>
+      <div class="eyebrow-sm" style="text-align:center;">EXPERIENCE</div>
+      <p>Currently seeking internship opportunities while building foundational skills in data analytics and Excel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="resume-bar">
+      <div class="resume-bar-left">
+        <div class="resume-icon">📄</div>
+        <div><h5>Charu Bhati's Resume</h5><p>A snapshot of my education and skills — updated as I grow.</p></div>
+      </div>
+      <a class="btn btn-primary" href="resume.pdf" download>⬇ Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="eyebrow-sm">CONTACT</div>
+    <h2 class="section-title">Let's connect.</h2>
+    <div class="contact-grid">
+      <div>
+        <a class="info-card" href="mailto:charusolanki02@gmail.com"><span class="ic">✉</span> charusolanki02@gmail.com</a>
+        <div class="info-card"><span class="ic">📍</span> Greater Noida, Uttar Pradesh, India</div>
+        <a class="info-card" href="https://www.linkedin.com/in/charu-bhati-2012423a9" target="_blank" rel="noopener"><span class="ic">in</span> LinkedIn profile</a>
+        <a class="info-card" href="https://github.com/charusolanki02" target="_blank" rel="noopener"><span class="ic">&lt;&gt;</span> GitHub profile</a>
+      </div>
+      <div class="form-card">
+        <form id="contactForm">
+          <div class="form-group"><label for="cf-name">Name</label><input id="cf-name" type="text" placeholder="Your name" required></div>
+          <div class="form-group"><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="you@example.com" required></div>
+          <div class="form-group"><label for="cf-msg">Message</label><textarea id="cf-msg" placeholder="Tell me about the opportunity..." required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+          <p class="form-note">Opens your email app addressed to charusolanki02@gmail.com — this page has no backend.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Charu Bhati — built 2026</div></footer>
+
+<script>
+  document.getElementById('themeToggle').addEventListener('click', ()=>{ document.body.classList.toggle('dark'); });
+  document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value;
+    const email = document.getElementById('cf-email').value;
+    const msg = document.getElementById('cf-msg').value;
+    const body = encodeURIComponent(`From: ${name} (${email})\n\n${msg}`);
+    window.location.href = `mailto:charusolanki02@gmail.com?subject=Portfolio contact from ${encodeURIComponent(name)}&body=${body}`;
+  });
+</script>
+</body>
+</html>
